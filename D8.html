@@ -10,6 +10,8 @@
     <header>
       <h1>This is the title of the page</h1>
       <button id="ex1">Change title</button>
+      <br><br>
+      <button onclick="addClassToTitle()">Add a class to title</button>
       <h2>This is the subtitle of the page</h2>
     </header>
 
@@ -69,6 +71,8 @@
       */
 
       const addClassToTitle = function () {
+        let changedClass = document.getElementsByTagName("h1")[0]
+        changedClass.className = "myHeading"
         //
       };
 
