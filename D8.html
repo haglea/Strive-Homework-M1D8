@@ -34,6 +34,7 @@
 
       <div>
         <p>This text is just for the exercise</p>
+        <button onclick="changePcontent()">Change paragraph content</button>
       </div>
 
       <div>
@@ -81,6 +82,8 @@
       */
 
       const changePcontent = function () {
+        let changedPcontent = document.getElementsByTagName("div")[0]
+        changedPcontent.getElementsByTagName("p")[0].innerText = "asdsa"
         //
       };
 
