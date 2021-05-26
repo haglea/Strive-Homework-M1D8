@@ -31,6 +31,7 @@
       </ul>
 
       <a href="strive.school">This link goes to Strive School</a>
+      <button onclick="changeUrls()">Change URL</button>
 
       <div>
         <p>This text is just for the exercise</p>
@@ -92,6 +93,10 @@
       */
 
       const changeUrls = function () {
+        let changedUrls = document.querySelector("a")
+        if (changedUrls.hasAttribute("href")) {
+          changedUrls.setAttribute("href", "https://www.google.com")}
+        
         //
       };
 
