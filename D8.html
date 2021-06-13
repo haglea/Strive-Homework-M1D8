@@ -1,17 +1,27 @@
-<html>
-  <head>
-    <style>
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <title>DOM Exercises</title>
+
+      <style>
       .myHeading {
         color: red;
       }
-    </style>
-  </head>
+      </style>
+    </head>
+
   <body>
+
     <header>
       <h1>This is the title of the page</h1>
       <button id="ex1">Change title</button>
       <br><br>
       <button onclick="addClassToTitle()">Add a class to title</button>
+      <button onclick="makeItClickable()">Change h1 color</button>
       <h2>This is the subtitle of the page</h2>
     </header>
 
@@ -29,6 +39,9 @@
         <li>2nd</li>
         <li>3rd</li>
       </ul>
+      <button onclick="addToTheSecond('4th')">Add 4th item to the 2nd List</button><br>
+      <button onclick="firstUlDisappear()">Remove first list</button><br>
+      <button onclick="paintItGreen()">Pain it Green</button><br>
 
       <a href="strive.school">This link goes to Strive School</a>
       <button onclick="changeUrls()">Change URL</button>
@@ -36,6 +49,7 @@
       <div>
         <p>This text is just for the exercise</p>
         <button onclick="changePcontent()">Change paragraph content</button>
+        <button onclick="addParagraph('This is second paragraph')">Add second paragraph</button>
       </div>
 
       <div>
@@ -50,6 +64,7 @@
     <footer>
       <p>And this text is just for the exercise too!</p>
     </footer>
+
     <script>
       /* EXERCISE 1
       Write a function for changing the title of the document in something else.
@@ -61,6 +76,7 @@
       
         //function for changing the title of the document
       };
+
       const btn1 = document.querySelector("#ex1")
       btn1.addEventListener("click", function(){
         changeTitle("This is a new Title")
@@ -83,9 +99,11 @@
       */
 
       const changePcontent = function () {
-        let changedPcontent = document.getElementsByTagName("div")[0]
-        changedPcontent.getElementsByTagName("p")[0].innerText = "asdsa"
-        //
+        let changedPcontent = document.querySelectorAll("div p")
+        changedPcontent.forEach( (p) => {
+          p.innerText = "asdasd"
+        }
+        )
       };
 
       /* EXERCISE 4
@@ -93,11 +111,8 @@
       */
 
       const changeUrls = function () {
-        let changedUrls = document.querySelector("a")
-        if (changedUrls.hasAttribute("href")) {
-          changedUrls.setAttribute("href", "https://www.google.com")}
-        
-        //
+        let changedUrls = document.querySelectorAll("a") //there is only one link
+        changedUrls.forEach((link) => { link.href = "https://www.google.com"})
       };
 
       /* EXERCISE 5
@@ -105,7 +120,11 @@
        */
 
       const addToTheSecond = function (content) {
-        //
+        let secondList = document.getElementById("secondList")
+        //let addOneItem = document.createElement("li")
+        //addOneItem.innerText = "new item"
+        //secondList.appendChild(addOneItem)
+        secondList.innerHTML += `<li>${content}</li>`
       };
 
       /* EXERCISE 6
@@ -113,6 +132,8 @@
       */
 
       const addParagraph = function (content) {
+        const secondParagraph = document.querySelectorAll("div")[0]
+        secondParagraph.innerHTML += `<p>${content}</p>` 
         //
       };
 
@@ -121,6 +142,8 @@
       */
 
       const firstUlDisappear = function () {
+        let firstListToRemove = document.querySelectorAll("ul")[0]
+        firstListToRemove.remove()
         //
       };
 
@@ -129,6 +152,11 @@
       */
 
       const paintItGreen = function () {
+        let everyUl = document.querySelectorAll("ul")
+        everyUl.forEach((list) => {
+          list.style.background = "green"
+
+        })
         //
       };
 
@@ -137,22 +165,38 @@
       */
 
       const makeItClickable = function () {
+        let colorHeading = document.querySelector("h1")
+        colorHeading.addEventListener("click", function (e) {
+          e.target.classList.toggle("myHeading")
+        })
         //
       };
+      makeItClickable()
 
       /* EXERCISE 10
       Change the footer text with something else when the user clicks on it.
       */
 
       const changeFooterText = function () {
+        let footerText = document.querySelector("footer")
+        footerText.addEventListener("click", function (e) {
+          e.target.innerText = "new text"
+        })
         //
       };
+      changeFooterText()
 
       /* EXERCISE 11
       Attach an event listener to the input field in the page for console logging its value just after any keystroke.
       */
 
       const inputField = document.getElementById("input-field");
+      document.onkeypress = function (e) {
+        console.log(inputField.value)
+      }
+      /*inputField.addEventListener("keypress", function () {
+        console.log(inputField)
+      })*/
       // ...
 
       /* EXERCISE 12
@@ -160,6 +204,7 @@
       */
 
       window.onload = function () {
+        alert("Welcome!")
         //
       };
 
@@ -168,4 +213,4 @@
       */
     </script>
   </body>
-</html>
+  </html>
